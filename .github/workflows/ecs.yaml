@@ -22,7 +22,7 @@ jobs:
                   java-version: '11'
         #to create artifact with maven
             - name: package-artifact
-              run: mvn package-artifact
+              run: mvn package
         #to run code analysis with sonarqube
             - name: code analysis with sonarqube
               run: mvn sonar:sonar -Dsonar.projectKey=drix-webapp-project -Dsonar.host.url=${{secrets.SONAR_HOST_URL}} -Dsonar.token=${{secrets.SONAR_LOGIN_TOKEN}}
