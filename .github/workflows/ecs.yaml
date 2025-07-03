@@ -65,7 +65,7 @@ jobs:
               uses: aws-actions/amazon-ecs-deploy-task-definition@v2
               with:
                   task-definition: ${{ steps.task-def.outputs.task-definition }}
-                  service: my-service
+                  service: drix-webapp-td-service-b0kqlqeb
                   cluster: drix-webapp-cluster
                   wait-for-service-stability: true
 
