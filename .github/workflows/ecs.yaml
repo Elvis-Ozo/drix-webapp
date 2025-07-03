@@ -31,3 +31,25 @@ jobs:
               run: mvn --batch-mode deploy
               env:
                   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        #have github actions authenticate into aws through OIDC
+            - name: authenticate into aws
+              uses: aws-actions/configure-aws-credentials@v4.1.0
+              with: 
+                  role-to-assume: arn:aws:iam::677276101416:role/github-actions-ecs-authentication-role
+                  aws-region: eu-north-1
+        #have github actions login into ecr
+            - name: login into aws ECR
+              id: login-ecr
+              uses: aws-actions/amazon-ecr-login@v2
+        #use docker to build tag and push image
+            - name: build tag and push image
+              id: build-image
+              env:
+                  REGISTRY: ${{steps.login-ecr.outputs.registry}}
+                  REPOSITORY: drix-webapp
+                  IMAGE_TAG: ${{github.sha}}
+              run: |
+                  docker build -t $REGISTRY/$REPOSITORY:IMAGE_TAG .
+                  echo "image=$REGISTRY/$REPOSITORY:IMAGE_TAG" >> $GITHUB_OUTPUT
+                  docker push $REGISTRY/$REPOSITORY:IMAGE_TAG
+       
