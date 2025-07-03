@@ -52,4 +52,21 @@ jobs:
                   docker build -t $REGISTRY/$REPOSITORY:IMAGE_TAG .
                   echo "image=$REGISTRY/$REPOSITORY:IMAGE_TAG" >> $GITHUB_OUTPUT
                   docker push $REGISTRY/$REPOSITORY:IMAGE_TAG
-       
+        #create a new revision of the task definition
+            - name: create a new revision of the task definition
+              id: task-def
+              uses: aws-actions/amazon-ecs-render-task-definition@v1
+              with:
+                  task-definition: task-definition.json
+                  container-name: drix-webapp-container
+                  image: ${{steps.build-image.outputs.image}}
+        #upadte your service with a new revision of the task definition file
+            - name: update service with new revision of task defintion file
+              uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+              with:
+                  task-definition: ${{ steps.task-def.outputs.task-definition }}
+                  service: my-service
+                  cluster: drix-webapp-cluster
+                  wait-for-service-stability: true
+
+                  

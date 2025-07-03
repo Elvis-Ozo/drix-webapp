@@ -1,0 +1,64 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:677276101416:task-definition/drix-webapp-td:2",
+    "containerDefinitions": [
+        {
+            "name": "drix-webapp-container",
+            "image": "677276101416.dkr.ecr.eu-north-1.amazonaws.com/drix-webapp:IMAGE_TAG",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "drix-webapp-container-80-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "systemControls": []
+        }
+    ],
+    "family": "drix-webapp-td",
+    "executionRoleArn": "arn:aws:iam::677276101416:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 2,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2025-07-03T01:39:03.967Z",
+    "registeredBy": "arn:aws:iam::677276101416:user/schoolfool",
+    "enableFaultInjection": false,
+    "tags": []
+}
