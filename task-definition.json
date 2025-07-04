@@ -1,10 +1,10 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:677276101416:task-definition/drix-webapp-td:2",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:677276101416:task-definition/drix-webapp-td:5",
     "containerDefinitions": [
         {
             "name": "drix-webapp-container",
             "image": "677276101416.dkr.ecr.eu-north-1.amazonaws.com/drix-webapp:IMAGE_TAG",
-            "cpu": 0,
+            "cpu": 1024,
             "portMappings": [
                 {
                     "name": "drix-webapp-container-80-tcp",
@@ -16,17 +16,15 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "systemControls": []
         }
     ],
     "family": "drix-webapp-td",
     "executionRoleArn": "arn:aws:iam::677276101416:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 2,
+    "revision": 5,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -57,7 +55,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2025-07-03T01:39:03.967Z",
+    "registeredAt": "2025-07-03T23:48:39.581Z",
     "registeredBy": "arn:aws:iam::677276101416:user/schoolfool",
     "enableFaultInjection": false,
     "tags": []
